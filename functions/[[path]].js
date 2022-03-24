@@ -1,3 +1,15 @@
+const lookClassFromHost = (host) => {
+  if (host === "something-something.kristofer.me") {
+    return "look-like-something-something";
+  }
+
+  if (host === "another-host.kristofer.me") {
+    return "look-like-another-host";
+  }
+
+  return "";
+};
+
 export async function onRequest(context) {
   // Contents of context object
   const {
@@ -20,6 +32,14 @@ export async function onRequest(context) {
     <body>
       <h1 class="title">${host}</h1>
       <p class="some-text">This page was served by Cloudflare Workers deployed through Cloudflare Pages</p>
+      <p>The <span class="${lookClassFromHost(
+        host
+      )}">look is slightly different</span> depending on what host you access it from:<p>
+      <ul>
+        <li><a href="https://cloudflare-pages-by-host.pages.dev/">cloudflare-pages-by-host.pages.dev</a></li>
+        <li><a href="https://something-something.kristofer.me/">something-something.kristofer.me</a></li>
+        <li><a href="https://another-host.palmvik.me/">another-host.palmvik.me</a></li>
+      </ul>
     </body>`;
 
   const css = `.title {
@@ -31,6 +51,16 @@ export async function onRequest(context) {
     border-top: 3px solid black;
     padding-top: 10px;
     margin: 10px;
+  }
+
+  .look-like-something-something {
+    font-weight: bold;
+    color: red;
+  }
+
+  .look-like-another-host {
+    font-weight: bold;
+    color: orange;
   }
   `;
 
