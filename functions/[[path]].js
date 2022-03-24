@@ -19,6 +19,7 @@ export async function onRequest(context) {
     </body>`;
 
   return new Response(html, {
+    status: 503,
     headers: {
       "content-type": "text/html;charset=UTF-8",
     },
