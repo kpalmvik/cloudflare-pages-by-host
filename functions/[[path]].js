@@ -13,19 +13,24 @@ export async function onRequest(context) {
   const { host, pathname } = url;
 
   const html = `<!DOCTYPE html>
+    <head>
+      <title>${host}</title>
+      <link href="/styles.css" rel="stylesheet">
+    </head>
     <body>
-      <h1>${host}</h1>
-      <p>This page was served by Cloudflare Workers deployed through Cloudflare Pages</p>
+      <h1 class="title">${host}</h1>
+      <p class="some-text">This page was served by Cloudflare Workers deployed through Cloudflare Pages</p>
     </body>`;
 
-  const css = `
-  .some-arbitrary-css {
+  const css = `.title {
     font-size: 16px;
     color: rebeccapurple;
   }
 
-  .another-nice-class {
-    border: 10px solid red;
+  .some-text {
+    border-top: 3px solid black;
+    padding-top: 10px;
+    margin: 10px;
   }
   `;
 
