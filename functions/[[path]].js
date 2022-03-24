@@ -9,8 +9,18 @@ export async function onRequest(context) {
     data, // arbitrary space for passing data between middlewares
   } = context;
 
+  const html = `<!DOCTYPE html>
+    <body>
+      <h1>${host}</h1>
+      <p>This page was served by Cloudflare Workers deployed through Cloudflare Pages</p>
+    </body>`;
+
   const url = new URL(request.url);
   const host = url.host;
 
-  return new Response(`Hello, world served on ${host}!`);
+  return new Response(html, {
+    headers: {
+      "content-type": "text/html;charset=UTF-8",
+    },
+  });
 }
