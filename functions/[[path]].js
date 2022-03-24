@@ -3,8 +3,8 @@ const lookClassFromHost = (host) => {
     return "look-like-something-something";
   }
 
-  if (host === "another-host.kristofer.me") {
-    return "look-like-another-host";
+  if (host === "testing.whitebrd.se") {
+    return "look-like-something-else";
   }
 
   return "";
@@ -38,7 +38,7 @@ export async function onRequest(context) {
       <ul>
         <li><a href="https://cloudflare-pages-by-host.pages.dev/">cloudflare-pages-by-host.pages.dev</a></li>
         <li><a href="https://something-something.kristofer.me/">something-something.kristofer.me</a></li>
-        <li><a href="https://another-host.palmvik.me/">another-host.palmvik.me</a></li>
+        <li><a href="https://testing.whitebrd.se/">testing.whitebrd.se</a></li>
       </ul>
     </body>`;
 
@@ -58,7 +58,7 @@ export async function onRequest(context) {
     color: red;
   }
 
-  .look-like-another-host {
+  .look-like-something-else {
     font-weight: bold;
     color: orange;
   }
