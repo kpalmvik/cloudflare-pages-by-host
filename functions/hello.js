@@ -9,5 +9,11 @@ export async function onRequest(context) {
     data, // arbitrary space for passing data between middlewares
   } = context;
 
-  return new Response("Hello, world!");
+  return new Response(
+    `Hello, world!\n
+    Request: ${JSON.stringify(request)}\n
+    Env: ${JSON.stringify(env)}\n
+    Params: ${JSON.stringify(params)}\n
+    `
+  );
 }
