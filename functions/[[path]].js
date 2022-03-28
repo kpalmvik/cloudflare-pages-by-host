@@ -40,8 +40,6 @@ export async function onRequest(context) {
 
   return new Response(html, {
     status: 503, // See <https://developers.google.com/search/blog/2011/01/how-to-deal-with-planned-site-downtime>
-    headers: {
-      "content-type": "text/html;charset=UTF-8",
-    },
+    headers: { "content-type": "text/html;charset=UTF-8" },
   });
 }
