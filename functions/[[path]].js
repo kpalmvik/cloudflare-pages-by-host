@@ -26,15 +26,12 @@ const getHTML = (host) => {
     </body>`;
 };
 
-export async function onRequest(context) {
-  const { request, env } = context;
-
+export async function onRequest({ request, env }) {
   const url = new URL(request.url);
   const { host, pathname } = url;
-
   const html = getHTML(host);
 
-  if (pathname == "/assets/styles.css") {
+  if (pathname === "/assets/styles.css") {
     return env.ASSETS.fetch(request);
   }
 
