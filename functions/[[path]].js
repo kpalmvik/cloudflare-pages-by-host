@@ -6,14 +6,10 @@ const lookClassFromHost = (host) => {
   return m.get(host) || "";
 };
 
-export async function onRequest(context) {
-  const { request, env } = context;
-
-  const url = new URL(request.url);
-  const { host, pathname } = url;
-
+const getHTML = (host) => {
   const lookClass = lookClassFromHost(host);
-  const html = `<!DOCTYPE html>
+
+  return `<!DOCTYPE html>
     <head>
       <title>${host}</title>
       <link href="/assets/styles.css" rel="stylesheet">
@@ -28,6 +24,15 @@ export async function onRequest(context) {
         <li><a href="https://testing.whitebrd.se/">testing.whitebrd.se</a></li>
       </ul>
     </body>`;
+};
+
+export async function onRequest(context) {
+  const { request, env } = context;
+
+  const url = new URL(request.url);
+  const { host, pathname } = url;
+
+  const html = getHTML(host);
 
   if (pathname == "/assets/styles.css") {
     return env.ASSETS.fetch(request);
