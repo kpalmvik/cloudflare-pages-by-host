@@ -7,7 +7,6 @@ const lookClassFromHost = (host) => {
 };
 
 export async function onRequest(context) {
-  // Contents of context object
   const { request, env } = context;
 
   const url = new URL(request.url);
