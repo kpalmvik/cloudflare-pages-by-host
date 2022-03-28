@@ -24,6 +24,7 @@ export async function onRequest(context) {
   const url = new URL(request.url);
   const { host, pathname } = url;
 
+  const lookClass = lookClassFromHost(host);
   const html = `<!DOCTYPE html>
     <head>
       <title>${host}</title>
@@ -32,9 +33,7 @@ export async function onRequest(context) {
     <body>
       <h1 class="title">${host}</h1>
       <p class="some-text">This page was served by Cloudflare Workers deployed through Cloudflare Pages</p>
-      <p>The <span class="${lookClassFromHost(
-        host
-      )}">look is slightly different</span> depending on what host you access it from:<p>
+      <p>The <span class="${lookClass}">look is slightly different</span> depending on what host you access it from:<p>
       <ul>
         <li><a href="https://cloudflare-pages-by-host.pages.dev/">cloudflare-pages-by-host.pages.dev</a></li>
         <li><a href="https://something-something.kristofer.me/">something-something.kristofer.me</a></li>
