@@ -27,7 +27,7 @@ export async function onRequest(context) {
   const html = `<!DOCTYPE html>
     <head>
       <title>${host}</title>
-      <link href="/styles.css" rel="stylesheet">
+      <link href="/assets/styles.css" rel="stylesheet">
     </head>
     <body>
       <h1 class="title">${host}</h1>
@@ -42,35 +42,8 @@ export async function onRequest(context) {
       </ul>
     </body>`;
 
-  const css = `.title {
-    font-size: 16px;
-    color: rebeccapurple;
-  }
-
-  .some-text {
-    border-top: 3px solid black;
-    padding-top: 10px;
-    margin: 10px;
-  }
-
-  .look-like-something-something {
-    font-weight: bold;
-    color: red;
-  }
-
-  .look-like-something-else {
-    font-weight: bold;
-    color: orange;
-  }
-  `;
-
-  if (pathname == "/styles.css") {
-    return new Response(css, {
-      status: 200,
-      headers: {
-        "content-type": "text/css;charset=UTF-8",
-      },
-    });
+  if (pathname == "/assets/styles.css") {
+    return env.ASSETS.fetch(request);
   }
 
   return new Response(html, {
