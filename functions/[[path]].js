@@ -1,13 +1,9 @@
 const lookClassFromHost = (host) => {
-  if (host === "something-something.kristofer.me") {
-    return "look-like-something-something";
-  }
+  const m = new Map();
+  m.set("something-something.kristofer.me", "look-like-something-something");
+  m.set("testing.whitebrd.se", "look-like-something-else");
 
-  if (host === "testing.whitebrd.se") {
-    return "look-like-something-else";
-  }
-
-  return "";
+  return m.get(host) || "";
 };
 
 export async function onRequest(context) {
